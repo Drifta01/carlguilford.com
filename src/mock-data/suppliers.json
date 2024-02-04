@@ -1,12 +1,18 @@
 [
   {
     "supplierId": 1,
-    "name": "Supplier 1",
+    "name": "HiQ",
     "phone": "123-456-7890"
   },
   {
     "supplierId": 2,
-    "name": "Supplier 2",
+    "name": "Ideal",
+    "phone": "123-456-7890"
+  },
+  { "supplierId": 3, "name": "EDL", "phone": "123-456-7890" },
+  {
+    "supplierId": 4,
+    "name": "HCB",
     "phone": "123-456-7890"
   }
 ]
