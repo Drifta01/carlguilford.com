@@ -1,0 +1,12 @@
+[
+  {
+    "supplierId": 1,
+    "name": "Supplier 1",
+    "phone": "123-456-7890"
+  },
+  {
+    "supplierId": 2,
+    "name": "Supplier 2",
+    "phone": "123-456-7890"
+  }
+]
