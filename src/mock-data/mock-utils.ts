@@ -1,28 +1,41 @@
-// import { faker } from '@faker-js/faker';
-// import { v4 } from 'uuid';
+import categories from "./categories.json";
+import items from "./items.json";
+import suppliers from "./suppliers.json";
 
-// export const mockPlayers = (numberOfPlayers: number, useFakeNames: boolean = false) => {
-//   return Array.from({ length: numberOfPlayers }, (_, i) => ({
-//     //userId: String(v4()),
-//     name: useFakeNames ? faker.person.firstName() + ' ' + faker.person.lastName() : String(i + 1),
-//   }));
-// };
+import { prisma } from "@/lib/data/prisma-client";
 
-// export const mockTeams = (numberOfTeams: number) => {
-//   return Array.from({ length: numberOfTeams }, (_, i) => ({
-//     teamId: String(v4()),
-//     name: 'team: ' + String(i + 1),
-//   }));
-// };
+export const seedData = async () => {
+  try {
+    const mockCategories = categories.map((category) => ({
+      name: category.name,
+    }));
 
-// export const mockTournament = (tournamentId: string) => {
-//   return {
-//     tournamentId,
-//   };
-// };
+    await prisma.category.createMany({
+      data: mockCategories,
+      skipDuplicates: true,
+    });
 
-// export const mockRounds = (numberOfRounds: number) => {
-//   return {
-//     roundId: String(v4()),
-//   };
-// };
+    const mockItems = items.map((item) => ({
+      name: item.name,
+      categoryId: item.categoryId,
+    }));
+
+    await prisma.item.createMany({
+      data: mockItems,
+      skipDuplicates: true,
+    });
+
+    const mockSuppliers = suppliers.map((supplier) => ({
+      name: supplier.name,
+    }));
+
+    await prisma.supplier.createMany({
+      data: mockSuppliers,
+      skipDuplicates: true,
+    });
+
+    return "Data seeded successfully!";
+  } catch (error: any) {
+    return error.message;
+  }
+};

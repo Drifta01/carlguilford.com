@@ -1,4 +1,4 @@
-import TopNav from '../components/navigation/TopNav';
+import TopNav from "@/ui/navigation/TopNav";
 
 export default function DashboardLayout({
   children,
@@ -7,9 +7,6 @@ export default function DashboardLayout({
 }>) {
   return (
     <main>
-      <nav>
-        <TopNav />
-      </nav>
       <section>{children}</section>
     </main>
   );

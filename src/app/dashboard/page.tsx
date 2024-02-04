@@ -1,9 +1,9 @@
-import BaseTable from '../components/tables/EditableTable';
+import CustomersTable from "@/components/tables/CustomersTable";
 
 export const Page = async () => {
   return (
     <>
-      <BaseTable />
+      <CustomersTable />
     </>
   );
 };

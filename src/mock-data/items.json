@@ -1,22 +1,20 @@
 [
   {
     "itemId": 1,
-    "title": "Item 1",
     "createdAt": "2022-01-01T00:00:00.000Z",
     "name": "Item 1 Name",
     "code": "ABC123",
     "price": 9.99,
-    "supplier": "Supplier 1",
+    "supplierId": 1,
     "categoryId": 1
   },
   {
     "itemId": 2,
-    "title": "Item 2",
     "createdAt": "2022-01-02T00:00:00.000Z",
     "name": "Item 2 Name",
     "code": "DEF456",
     "price": 19.99,
-    "supplier": "Supplier 2",
+    "supplierId": 2,
     "categoryId": 2
   }
 ]
