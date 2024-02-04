@@ -6,33 +6,37 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = "mysql://0t9yq5mfht0rwyo7pycn:pscale_pw_RpBGdP3wJl8VEuSMb2iLiQQnGmphRSKzSclKiVtQ3H4@gcp.connect.psdb.cloud/mydatabase?sslaccept=strict"
+  relationMode = "prisma"
 }
 
 model Item {
-  itemId        Int      @id @default(autoincrement())
-  title         String   @db.VarChar(255)
-  createdAt     DateTime @default(now()) @db.Timestamp(6)
-  name          String
-  code          String?
-  price         Float?
-  suppiler      String?
-  categoryId    Int?
-  category      Category? @relation(fields: [categoryId], references: [categoryId])
+  itemId     Int      @id @default(autoincrement())
+  title      String   @db.VarChar(255)
+  createdAt  DateTime @default(now()) @db.Timestamp(6)
+  name       String
+  code       String?
+  price      Float?
+  suppiler   String?
+  categoryId Int?
 
-  supplierId    Int?
-  supplier      Supplier? @relation(fields: [supplierId], references: [supplierId])
+  category Category[]
+  supplier Supplier[]
 }
 
 model Category {
-  categoryId   Int      @id @default(autoincrement())
-  name         String
-  items        Item[]
+  categoryId Int    @id @default(autoincrement())
+  name       String
+  items      Item[]
+
+  @@index([categoryId])
 }
 
 model Supplier {
-  supplierId   Int      @id @default(autoincrement())
-  name         String
-  items        Item[]
+  supplierId Int    @id @default(autoincrement())
+  name       String
+  items      Item[]
+
+  @@index([supplierId])
 }
