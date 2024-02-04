@@ -1,10 +1,51 @@
 [
   {
-    "categoryId": 1,
-    "name": "Category 1"
+    "name": "Case"
   },
   {
-    "categoryId": 2,
-    "name": "Category 2"
+    "name": "Cables"
+  },
+  {
+    "name": "Meters"
+  },
+  { "name": "Cable Management" },
+  {
+    "name": "Clips"
+  },
+  {
+    "name": "Fasteners"
+  },
+  {
+    "name": "Transformer"
+  },
+  {
+    "name": "Components"
+  },
+  {
+    "name": "Switches"
+  },
+  {
+    "name": "Bumper Feet"
+  },
+  {
+    "name": "Load type"
+  },
+  {
+    "name": "PCB"
+  },
+  {
+    "name": "Internal Wiring"
+  },
+  {
+    "name": "Sundries"
+  },
+  {
+    "name": "Labour Hours"
+  },
+  {
+    "name": "Packaging"
+  },
+  {
+    "name": "Freight"
   }
 ]
