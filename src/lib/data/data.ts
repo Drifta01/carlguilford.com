@@ -1,7 +1,9 @@
-import { unstable_noStore } from "next/cache";
+import { unstable_noStore as noStore } from "next/cache";
 import { prisma } from "@/lib/data/prisma-client";
 
 export async function fetchCategories() {
+  noStore();
+
   const items = await prisma.item.findMany({
     include: {
       category: true,
@@ -11,24 +13,24 @@ export async function fetchCategories() {
   return items;
 }
 
-// findMany<T extends ItemFindManyArgs<ExtArgs>>(
-//   args?: SelectSubset<T, ItemFindManyArgs<ExtArgs>>
-// ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, 'findMany'>>
-
 export async function fetchItems() {
+  noStore();
   const items = await prisma.item.findMany({
-    args: { name: true },
+    select: { name: true },
   });
 
   return items;
 }
 
 export async function fetchSuppliers() {
+  noStore();
   const suppliers = await prisma.supplier.findMany({
-    include: {
+    select: {
+      supplierId: true,
+
       name: true,
     },
   });
 
-  return items;
+  return suppliers;
 }

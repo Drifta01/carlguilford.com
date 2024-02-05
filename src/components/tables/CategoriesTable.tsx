@@ -1,25 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, InputNumber, Popconfirm, Table, Typography } from "antd";
+import { Prisma } from "@prisma/client";
+import { Supplier } from "@/types/types";
 
-interface Item {
+interface Item extends Prisma.SupplierDefaultArgs {
   key: string;
   name: string;
-  age: number;
-  address: string;
 }
 
-const originData: Item[] = [];
-
-for (let i = 0; i < 100; i++) {
-  originData.push({
-    key: i.toString(),
-    name: `Edward ${i}`,
-    age: 32,
-    address: `London Park no. ${i}`,
-  });
-}
 interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
   dataIndex: string;
@@ -38,7 +28,7 @@ const EditableCell: React.FC<EditableCellProps> = ({ editing, dataIndex, title, 
       {editing ? (
         <Form.Item
           name={dataIndex}
-          style={{ margin: 0 }}
+          className="m-0"
           rules={[
             {
               required: true,
@@ -55,11 +45,10 @@ const EditableCell: React.FC<EditableCellProps> = ({ editing, dataIndex, title, 
   );
 };
 
-const CustomersTable: React.FC = () => {
+const CategoriesTable: React.ElementType = () => {
   const [form] = Form.useForm();
-  const [data, setData] = useState(originData);
+  const [data, setData] = useState<Supplier[]>();
   const [editingKey, setEditingKey] = useState("");
-
   const isEditing = (record: Item) => record.key === editingKey;
 
   const edit = (record: Partial<Item> & { key: React.Key }) => {
@@ -143,7 +132,7 @@ const CustomersTable: React.FC = () => {
     }
     return {
       ...col,
-      onCell: (record: Item) => ({
+      onCell: (record: Item & Supplier) => ({
         record,
         inputType: col.dataIndex === "age" ? "number" : "text",
         dataIndex: col.dataIndex,
@@ -162,7 +151,7 @@ const CustomersTable: React.FC = () => {
           },
         }}
         bordered
-        dataSource={data}
+        dataSource={[]}
         columns={mergedColumns}
         rowClassName="editable-row"
         pagination={{
@@ -173,4 +162,4 @@ const CustomersTable: React.FC = () => {
   );
 };
 
-export default CustomersTable;
+export default CategoriesTable;

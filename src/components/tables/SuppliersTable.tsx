@@ -1,25 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, InputNumber, Popconfirm, Table, Typography } from "antd";
+import { Supplier } from "@prisma/client";
 
-interface Item {
+type Item = {
   key: string;
-  name: string;
-  age: number;
-  address: string;
-}
+};
 
-const originData: Item[] = [];
+type Props<T> = {
+  datasource: T[];
+  id: number;
+};
 
-for (let i = 0; i < 100; i++) {
-  originData.push({
-    key: i.toString(),
-    name: `Edward ${i}`,
-    age: 32,
-    address: `London Park no. ${i}`,
-  });
-}
 interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
   dataIndex: string;
@@ -55,10 +48,14 @@ const EditableCell: React.FC<EditableCellProps> = ({ editing, dataIndex, title, 
   );
 };
 
-const SuppliersTable: React.FC = () => {
+export default function SuppliersTable<TDataSource extends Item>({ datasource }): TDataSource {
   const [form] = Form.useForm();
-  const [data, setData] = useState(originData);
+  const [data, setData] = useState<TDataSource[]>([]);
   const [editingKey, setEditingKey] = useState("");
+
+  useEffect(() => {
+    setData(datasource);
+  }, [datasource]);
 
   const isEditing = (record: Item) => record.key === editingKey;
 
@@ -162,7 +159,7 @@ const SuppliersTable: React.FC = () => {
           },
         }}
         bordered
-        dataSource={data}
+        dataSource={data.length > 0 ? data : []}
         columns={mergedColumns}
         rowClassName="editable-row"
         pagination={{
@@ -171,6 +168,4 @@ const SuppliersTable: React.FC = () => {
       />
     </Form>
   );
-};
-
-export default SuppliersTable;
+}

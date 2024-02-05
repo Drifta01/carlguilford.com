@@ -1,13 +1,9 @@
-import TopNav from "@/ui/navigation/TopNav";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <main>
-      <section>{children}</section>
-    </main>
-  );
+  return <section>{children}</section>;
 }

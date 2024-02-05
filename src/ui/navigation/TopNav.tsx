@@ -1,9 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import { AppstoreOutlined, HomeOutlined, MailOutlined, SettingOutlined } from "@ant-design/icons";
+import { HomeOutlined, SettingOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
 import Link from "next/link";
+import React, { useState } from "react";
 
 const items: MenuProps["items"] = [
   {
@@ -17,18 +17,18 @@ const items: MenuProps["items"] = [
     icon: <SettingOutlined />,
     children: [
       {
-        key: "group",
-        label: <Link href="/dashboard">Item 1</Link>,
+        key: "1",
+        label: <Link href="/dashboard/?suppliers">Item 1</Link>,
       },
       {
-        key: "group",
-        label: <Link href="/dashboard">Item 2</Link>,
+        key: "2",
+        label: <Link href="/dashboard/?categories">Item 2</Link>,
       },
     ],
   },
   {
-    label: <Link href="">Navigation Four - Link</Link>,
-    key: "alipay",
+    label: <Link href="/contact">Navigation Four - Link</Link>,
+    key: "contact",
   },
 ];
 
@@ -36,7 +36,6 @@ const TopNav: React.FC = () => {
   const [current, setCurrent] = useState("mail");
 
   const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
     setCurrent(e.key);
   };
 

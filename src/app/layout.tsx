@@ -1,7 +1,8 @@
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import type { Metadata } from "next";
 import "@/globals.css";
 import { inter } from "@/ui/fonts";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
+
 import TopNav from "@/ui/navigation/TopNav";
 
 export const metadata: Metadata = {
@@ -17,10 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialised mx-auto`}>
-        <nav>
+        <AntdRegistry>
           <TopNav />
-        </nav>
-        <main>{children}</main>
+          <main>{children}</main>
+        </AntdRegistry>
       </body>
     </html>
   );
