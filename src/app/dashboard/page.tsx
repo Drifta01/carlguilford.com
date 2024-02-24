@@ -7,13 +7,15 @@ import { Supplier } from "@prisma/client";
 export const Page = async () => {
   const suppliers: Supplier[] = await fetchSuppliers();
 
+  console.log(suppliers);
+
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
         <TestComp />
       </Suspense>
 
-      <SuppliersTable suppliers={suppliers} />
+      <SuppliersTable datasource={suppliers} />
     </>
   );
 };

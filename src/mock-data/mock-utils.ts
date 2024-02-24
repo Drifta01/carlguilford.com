@@ -12,7 +12,6 @@ export const seedData = async () => {
 
     await prisma.category.createMany({
       data: mockCategories,
-      skipDuplicates: true,
     });
 
     const mockItems = items.map((item) => ({
@@ -31,7 +30,6 @@ export const seedData = async () => {
 
     await prisma.supplier.createMany({
       data: mockSuppliers,
-      skipDuplicates: true,
     });
 
     return "Data seeded successfully!";

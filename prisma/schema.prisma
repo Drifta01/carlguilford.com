@@ -9,30 +9,30 @@ datasource db {
 }
 
 model Item {
-  itemId     Int      @id @default(autoincrement())
-  createdAt  DateTime @default(now()) @db.Timestamp(6)
-  name       String
-  code       String?
-  price      Float?
-  suppiler   String?
-  categoryId Int?
+  key       Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  name      String
+  code      String?
+  price     Float?
 
-  category Category[]
-  supplier Supplier[]
+  Category     Category? @relation(fields: [catetgoryKey], references: [key])
+  catetgoryKey Int?
+
+  Supplier    Supplier? @relation(fields: [supplierKey], references: [key])
+  supplierKey Int?
+
+  @@index([catetgoryKey])
+  @@index([supplierKey])
 }
 
 model Category {
-  categoryId Int    @id @default(autoincrement())
-  name       String
-  items      Item[]
-
-  @@index([categoryId])
+  key   Int    @id @default(autoincrement())
+  name  String
+  items Item[]
 }
 
 model Supplier {
-  supplierId Int    @id @default(autoincrement())
-  name       String
-  items      Item[]
-
-  @@index([supplierId])
+  key   Int    @id @default(autoincrement())
+  name  String
+  items Item[]
 }
